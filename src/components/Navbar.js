@@ -6,25 +6,25 @@ import { useAuthState } from "react-firebase-hooks/auth";
 import "./Navbar.css";
 
 const Navbar = () => {
-  const [user, loading, error] = useAuthState(auth);
+  const [user, loading] = useAuthState(auth);
   const [name, setName] = useState("");
   const navigate = useNavigate();
 
-  const fetchUserName = async () => {
-    try {
-      const q = query(collection(db, "users"), where("uid", "==", user.uid));
-      const doc = await getDocs(q);
-      const data = doc.docs[0].data();
-      setName(data.name);
-    } catch (error) {
-      console.error(error.message);
-    }
-  };
-
   useEffect(() => {
+    const fetchUserName = async () => {
+      try {
+        const q = query(collection(db, "users"), where("uid", "==", user?.uid));
+        const doc = await getDocs(q);
+        const data = doc.docs[0].data();
+        setName(data.name);
+      } catch (error) {
+        console.error(error.message);
+      }
+    };
+
     if (loading) return;
     if (!user) navigate("/");
-    fetchUserName();
+    else fetchUserName();
   }, [user, loading, navigate]);
 
   return (

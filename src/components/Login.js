@@ -9,7 +9,7 @@ const googleLogo = process.env.PUBLIC_URL + "/googleLogin.png";
 
 const Login = () => {
   const navigate = useNavigate();
-  const [user, loading, error] = useAuthState(auth);
+  const [user, loading] = useAuthState(auth);
 
   useEffect(() => {
     if (loading) return;
