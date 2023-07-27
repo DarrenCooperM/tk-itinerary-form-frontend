@@ -24,6 +24,7 @@ const Form = () => {
     const data = { email, subject, itinerary };
     try {
       await axios.post("http://localhost:5000/send-email", data);
+      window.location.reload();
     } catch (err) {
       setError("Failed to send email. Please try again.");
     }
