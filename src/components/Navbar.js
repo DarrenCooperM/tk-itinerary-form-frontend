@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import "./Navbar.css";
 
-const Navbar = ({ isAuthenticated, onLogout }) => {
+const Navbar = () => {
   return (
     <nav className="navbar">
       <div className="navbar-container">
@@ -25,11 +25,7 @@ const Navbar = ({ isAuthenticated, onLogout }) => {
             TK
           </Link>
         </div>
-        {isAuthenticated && (
-          <button className="logout-button" onClick={onLogout}>
-            LOGOUT
-          </button>
-        )}
+        <button className="logout-button">LOGOUT</button>
       </div>
     </nav>
   );
