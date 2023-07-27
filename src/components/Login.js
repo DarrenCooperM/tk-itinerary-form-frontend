@@ -1,54 +1,45 @@
-import React, { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import React, { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+import { auth, signInWithGoogle } from "./utils/Firebase";
+import { useAuthState } from "react-firebase-hooks/auth";
+
 import "./Login.css";
 
-const LoginForm = () => {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const navigate = useNavigate();
+const googleLogo = process.env.PUBLIC_URL + "/googleLogin.png";
 
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    console.log(`Email: ${email}, Password: ${password}`);
-  };
+const Login = () => {
+  const navigate = useNavigate();
+  const [user, loading, error] = useAuthState(auth);
+
+  useEffect(() => {
+    if (loading) return;
+    if (user) navigate("/form");
+  }, [user, loading, navigate]);
 
   return (
     <div className="login-body">
       <div className="login-container">
         <h2 className="login-title">TK Login</h2>
-        <form onSubmit={handleSubmit} className="login-form">
-          <input
-            type="email"
-            placeholder="Email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            className="login-input"
-          />
-          <input
-            type="password"
-            placeholder="Password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            className="login-input"
-          />
-          <button type="submit" className="login-button">
-            Login
+        <div className="login-form">
+          <button className="google-login-button" onClick={signInWithGoogle}>
+            <img
+              src={googleLogo}
+              alt="Google Sign In Logo"
+              className="google-login-logo"
+            />
           </button>
-          <button type="button" className="google-login-button">
-            Login with Google
-          </button>
-        </form>
+        </div>
         <div className="auxiliary-actions">
-          <Link to="/forgot-password" className="forgot-password-link">
+          {/* <Link to="/forgot-password" className="forgot-password-link">
             Forgot Password?
           </Link>
           <Link to="/register" className="register-link">
             Register
-          </Link>
+          </Link> */}
         </div>
       </div>
     </div>
   );
 };
 
-export default LoginForm;
+export default Login;

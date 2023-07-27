@@ -41,20 +41,16 @@
   cursor: pointer;
 }
 
+.google-login-button {
+  background: transparent;
+}
+
 .login-button {
   background-color: #007bff;
 }
 
 .login-button:hover {
   background-color: #0056b3;
-}
-
-.google-login-button {
-  background-color: #db4437;
-}
-
-.google-login-button:hover {
-  background-color: #c23321;
 }
 
 .auxiliary-actions {
