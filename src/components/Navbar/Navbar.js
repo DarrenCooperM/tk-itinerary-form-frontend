@@ -46,6 +46,9 @@ const Navbar = () => {
           >
             TK
           </Link>
+          <Link className="navbar-link" to="/sent-emails">
+            Collection
+          </Link>
         </div>
         {user && (
           <button className="logout-button" onClick={logOut}>
