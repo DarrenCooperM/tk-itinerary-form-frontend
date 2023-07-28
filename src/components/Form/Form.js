@@ -34,7 +34,7 @@ const Form = () => {
   return (
     <>
       <h2 className="header">
-        Fill out of form below and click 'Send Email' to submit itinerary
+        Fill out the form below and click 'Send Email' to submit itinerary
       </h2>
 
       <form onSubmit={handleSubmit} class="form">
