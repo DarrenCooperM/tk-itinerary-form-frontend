@@ -107,3 +107,19 @@
     transform: rotate(360deg);
   }
 }
+
+.login-message {
+  text-align: center;
+}
+
+.login-success {
+  color: green;
+}
+
+.login-error {
+  color: red;
+}
+
+.spinner {
+  color: blue;
+}
