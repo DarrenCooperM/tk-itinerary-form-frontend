@@ -23,6 +23,15 @@ const SentEmails = () => {
     fetchEmails();
   }, []);
 
+  const deleteEmail = async (id) => {
+    try {
+      await axios.delete(`http://localhost:5000/post/delete-email/${id}`);
+      setEmails(emails.filter((email) => email._id !== id)); // update the state
+    } catch (err) {
+      console.error(err);
+    }
+  };
+
   if (loading) return <div>Loading...</div>;
   if (error) return <div>{error}</div>;
 
@@ -31,7 +40,13 @@ const SentEmails = () => {
       <h1>Collection</h1>
       {emails.map((email, index) => (
         <div key={index} className="email-item">
-          <h2>Subject: {email.subject}</h2>
+          <div className="subject-delete-container">
+            <h2>Subject: {email.subject}</h2>
+            <p className="delete-icon" onClick={() => deleteEmail(email._id)}>
+              X
+            </p>
+          </div>
+          <p>Sent: {new Date(email.createdAt).toLocaleString()}</p>
           <p>Recipient: {email.email}</p>
           <p>Itinerary:</p>
           {email.itinerary.map((item, i) => (

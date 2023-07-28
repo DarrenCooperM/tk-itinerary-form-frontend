@@ -44,3 +44,13 @@
   border: none;
   border-top: 1px solid #ddd;
 }
+
+.subject-delete-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.delete-icon {
+  cursor: pointer;
+}

@@ -46,6 +46,9 @@ const Navbar = () => {
           >
             TK
           </Link>
+          <Link className="navbar-link" to="/form">
+            FORM
+          </Link>
           <Link className="navbar-link" to="/sent-emails">
             Collection
           </Link>
