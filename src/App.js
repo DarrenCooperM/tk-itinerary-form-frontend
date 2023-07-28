@@ -1,8 +1,8 @@
 import React from "react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
-import Login from "./components/Login";
-import Form from "./components/Form";
-import Navbar from "./components/Navbar";
+import Login from "./components/Login/Login";
+import Form from "./components/Form/Form";
+import Navbar from "./components/Navbar/Navbar";
 import "./App.css";
 
 const App = () => {
@@ -11,8 +11,6 @@ const App = () => {
       <Navbar />
       <Routes>
         <Route path="/" element={<Login />} />
-        <Route path="/register" element={<Login />} />
-        <Route path="/reset" element={<Login />} />
         <Route path="/form" element={<Form />} />
       </Routes>
     </Router>
