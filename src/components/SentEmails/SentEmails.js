@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
+import { Link } from "react-router-dom";
 import "./SentEmails.css";
 
 const SentEmails = () => {
@@ -38,28 +39,37 @@ const SentEmails = () => {
   return (
     <div className="sent-emails-container">
       <h1>Collection</h1>
-      {emails.map((email, index) => (
-        <div key={index} className="email-item">
-          <div className="subject-delete-container">
-            <h2>Subject: {email.subject}</h2>
-            <p className="delete-icon" onClick={() => deleteEmail(email._id)}>
-              X
-            </p>
-          </div>
-          <p>Sent: {new Date(email.createdAt).toLocaleString()}</p>
-          <p>Recipient: {email.email}</p>
-          <p>Itinerary:</p>
-          {email.itinerary.map((item, i) => (
-            <div key={i} className="itinerary-item">
-              <p>Activity: {item.activity}</p>
-              <p>Date: {item.date}</p>
-              <p>Time: {item.time}</p>
-              <p>Description: {item.description}</p>
+      {emails.length > 0 ? (
+        emails.map((email, index) => (
+          <div key={index} className="email-item">
+            <div className="subject-delete-container">
+              <h2>Subject: {email.subject}</h2>
+              <p className="delete-icon" onClick={() => deleteEmail(email._id)}>
+                X
+              </p>
             </div>
-          ))}
-          <hr />
+            <p>Sent: {new Date(email.createdAt).toLocaleString()}</p>
+            <p>Recipient: {email.email}</p>
+            <p>Itinerary:</p>
+            {email.itinerary.map((item, i) => (
+              <div key={i} className="itinerary-item">
+                <p>Activity: {item.activity}</p>
+                <p>Date: {item.date}</p>
+                <p>Time: {item.time}</p>
+                <p>Description: {item.description}</p>
+              </div>
+            ))}
+            <hr />
+          </div>
+        ))
+      ) : (
+        <div className="error-case-container">
+          <p className="no-emails">No emails to display</p>
+          <Link className="back-to-form-link" to="/form">
+            Back to form
+          </Link>
         </div>
-      ))}
+      )}
     </div>
   );
 };

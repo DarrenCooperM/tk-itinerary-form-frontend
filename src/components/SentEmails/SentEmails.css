@@ -54,3 +54,28 @@
 .delete-icon {
   cursor: pointer;
 }
+
+.error-case-container {
+  text-align: center;
+}
+
+.no-emails {
+  font-size: 1.2rem;
+}
+
+.back-to-form-link {
+  color: #f1f1f1;
+  text-decoration: none;
+  font-size: 1.2rem;
+  margin-top: 20px;
+  display: inline-block;
+  border: 1px solid #ddd;
+  padding: 10px 20px;
+  border-radius: 5px;
+  background: #007bff;
+  transition: 0.3s;
+}
+
+.back-to-form-link:hover {
+  background: #0056b3;
+}
