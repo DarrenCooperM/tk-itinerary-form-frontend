@@ -2,11 +2,14 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
 import "./SentEmails.css";
+import Pagination from "./Pagination"; // Import the Pagination component
 
 const SentEmails = () => {
   const [emails, setEmails] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
+  const [currentPage, setCurrentPage] = useState(1);
+  const emailsPerPage = 3;
 
   useEffect(() => {
     const fetchEmails = async () => {
@@ -33,14 +36,20 @@ const SentEmails = () => {
     }
   };
 
+  const paginate = (pageNumber) => setCurrentPage(pageNumber);
+
+  const indexOfLastEmail = currentPage * emailsPerPage;
+  const indexOfFirstEmail = indexOfLastEmail - emailsPerPage;
+  const currentEmails = emails.slice(indexOfFirstEmail, indexOfLastEmail);
+
   if (loading) return <div>Loading...</div>;
   if (error) return <div>{error}</div>;
 
   return (
     <div className="sent-emails-container">
       <h1>Collection</h1>
-      {emails.length > 0 ? (
-        emails.map((email, index) => (
+      {currentEmails.length > 0 ? (
+        currentEmails.map((email, index) => (
           <div key={index} className="email-item">
             <div className="subject-delete-container">
               <h2>Subject: {email.subject}</h2>
@@ -70,6 +79,12 @@ const SentEmails = () => {
           </Link>
         </div>
       )}
+      <Pagination
+        emailsPerPage={emailsPerPage}
+        totalEmails={emails.length}
+        paginate={paginate}
+        currentPage={currentPage}
+      />
     </div>
   );
 };
