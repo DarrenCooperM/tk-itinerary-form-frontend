@@ -112,6 +112,7 @@ const Form = () => {
         ))}
 
         <button
+          disabled={loading}
           className="btn"
           type="button"
           onClick={() =>
@@ -123,7 +124,7 @@ const Form = () => {
         >
           Add Activity
         </button>
-        <button className="btn" type="submit">
+        <button className="btn" type="submit" disabled={loading}>
           {loading ? "Loading..." : "Send Email"}
         </button>
         {error && <div className="error">{error}</div>}
