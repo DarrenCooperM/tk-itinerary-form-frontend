@@ -31,7 +31,11 @@ const Navbar = () => {
     <nav className="navbar">
       <div className="navbar-container">
         <div className="navbar-links">
-          {user && <div>Welcome back {name}</div>}
+          {user && (
+            <div>
+              Welcome back <span className="user-name">{name}</span>
+            </div>
+          )}
           <Link
             className="navbar-link"
             to="https://trainlikeaking.com/"

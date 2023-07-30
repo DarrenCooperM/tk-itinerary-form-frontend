@@ -15,6 +15,12 @@
   margin: auto; /* This will center the navbar-container */
 }
 
+.user-name {
+  font-weight: 700;
+  color: #333;
+  text-decoration: underline;
+}
+
 .navbar-links {
   display: flex;
   gap: 5rem;
