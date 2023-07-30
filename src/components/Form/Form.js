@@ -98,6 +98,7 @@ const Form = () => {
               placeholder="Description"
               required
             />
+            {/* TODO - added file uploader e.g. pdf */}
 
             {itinerary.length !== 1 && (
               <button
